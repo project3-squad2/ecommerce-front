@@ -93,9 +93,17 @@ const signOutSuccess = () => {
 
 // success monsters, show up!
 
-const successMonsters = (data) => {
+const successMonsters = (monsters) => {
+   console.log(monsters);
 
-   console.log(data);
+   $('#monsters').empty();
+
+   let displayAllMonsters = require('../templates/display-all-monsters.handlebars');
+
+   $('#monsters').append(displayAllMonsters(monsters));
+
+
+
 };
 
 
@@ -119,7 +127,8 @@ module.exports = {
 
   app,
   failureSignIn,
-  successMonsters
+  successMonsters,
+
 
 
 };

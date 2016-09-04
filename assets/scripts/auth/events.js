@@ -106,7 +106,6 @@ const onSignOut = function (event) {
 const onPageLoad = function () {
   //  debugger;
 
-
   api.getAllMonsters()
      .done(ui.successMonsters)
      .fail(ui.failure);
