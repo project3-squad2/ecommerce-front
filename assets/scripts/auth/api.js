@@ -46,6 +46,10 @@ const getAllMonsters = () => $.ajax({
 
 });
 
+const showMonster = (id) => $.ajax({
+  url: app.api + '/monsters/' + id,
+    method: 'GET',
+});
 
 
 
@@ -54,6 +58,7 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
-  getAllMonsters
+  getAllMonsters,
+  showMonster
 
 };

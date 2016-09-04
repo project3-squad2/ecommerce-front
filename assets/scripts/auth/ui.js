@@ -101,11 +101,12 @@ const successMonsters = (monsters) => {
    let displayAllMonsters = require('../templates/display-all-monsters.handlebars');
 
    $('#monsters').append(displayAllMonsters(monsters));
-
-
-
 };
 
+const successMonster = () => {
+  $('#show-monster-modal').modal('show');
+
+};
 
 
 
@@ -124,7 +125,7 @@ module.exports = {
   signInSuccess,
   signOutSuccess,
   onSuccess,
-
+  successMonster,
   app,
   failureSignIn,
   successMonsters,
