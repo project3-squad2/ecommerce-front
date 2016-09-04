@@ -1,6 +1,7 @@
 'use strict';
 
 const app = require('../app');
+const api = require('./api');
 
 
 
@@ -74,6 +75,8 @@ const signInSuccess = (data) => {
   console.log(app.user.token);
 
 
+
+
 };
 
 
@@ -87,6 +90,21 @@ const signOutSuccess = () => {
 
 };
 
+
+// success monsters, show up!
+
+const successMonsters = (monsters) => {
+   console.log(monsters);
+
+   $('#monsters').empty();
+
+   let displayAllMonsters = require('../templates/display-all-monsters.handlebars');
+
+   $('#monsters').append(displayAllMonsters(monsters));
+
+
+
+};
 
 
 
@@ -109,6 +127,8 @@ module.exports = {
 
   app,
   failureSignIn,
+  successMonsters,
+
 
 
 };

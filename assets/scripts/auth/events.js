@@ -97,7 +97,18 @@ const onSignOut = function (event) {
    .done(ui.signOutSuccess)
    .fail(ui.failure);
 
+};
 
+
+
+
+// load all monsters
+const onPageLoad = function () {
+  //  debugger;
+
+  api.getAllMonsters()
+     .done(ui.successMonsters)
+     .fail(ui.failure);
 };
 
 
@@ -110,11 +121,8 @@ const onSignOut = function (event) {
 
 
 
-
-
-
 const addHandlers = () => {
-
+    $(document).ready(onPageLoad);
 
     $('#sign-up-modal-link').on('click', showSignUpModal);
     $('#sign-up').on('submit', onSignUp);

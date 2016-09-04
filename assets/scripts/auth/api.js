@@ -40,6 +40,12 @@ const signOut = () => $.ajax({
 
 
 
+const getAllMonsters = () => $.ajax({
+  url: app.api + '/monsters/',
+  method: 'GET',
+
+});
+
 
 
 
@@ -48,5 +54,6 @@ module.exports = {
   signIn,
   changePassword,
   signOut,
+  getAllMonsters
 
 };
