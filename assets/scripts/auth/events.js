@@ -113,9 +113,25 @@ const onPageLoad = function () {
 
 
 
+// Show monster
+// const showMonsterModal = function showMonsterModal(){
+//   $('#show-monster-modal').modal('show');
+// };
+//
+// const closeModalMonster = function closeModalMonster() {
+//     $('#show-monster-modal').modal('hide');
+// };
 
 
+const onShowMonster = function (id) {
+  console.log(id);
+    // event.preventDefault();
+    api.showMonster(id)
+    // ui.successMonster();
+   .done(ui.successMonster)
+   .fail(ui.failure);
 
+};
 
 
 
@@ -149,6 +165,15 @@ const addHandlers = () => {
             location.reload();
 
     });
+
+    $(document).on('click', '.col-md-4', function(){
+      let id = $(this).data('id');
+      console.log(id);
+      onShowMonster(id);
+    });
+
+
+
 
 
 
