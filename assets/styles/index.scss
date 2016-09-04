@@ -1,6 +1,29 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+// HEADER
+.jumbotron {
+  background: url('/spooky-header.jpg');
+  background-size: cover;
+}
+
+.site-title {
+  text-align: center;
+}
+
+//site-title color
+.jumbotron h1 {
+  color: red;
+}
+
+.title-description {
+  text-align: center;
+  color: red;
+}
+
+
+// HEADER END
+
 // PRODUCTS FOR SALE
 // .monster-posts {
 //
