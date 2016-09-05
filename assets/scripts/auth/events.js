@@ -113,15 +113,6 @@ const onPageLoad = function () {
 
 
 
-// Show monster
-// const showMonsterModal = function showMonsterModal(){
-//   $('#show-monster-modal').modal('show');
-// };
-//
-// const closeModalMonster = function closeModalMonster() {
-//     $('#show-monster-modal').modal('hide');
-// };
-
 
 const onShowMonster = function (id) {
   console.log(id);
