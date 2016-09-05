@@ -103,19 +103,15 @@ const successMonsters = (monsters) => {
    $('#monsters').append(displayAllMonsters(monsters));
 };
 
-const successMonster = (data) => {
-  console.log(data);
-  let monster = require('../templates/monster.handlebars');
+
+// one monster
+const successMonster = (monster) => {
+  console.log(monster);
+  let oneMonster = require('../templates/monster.handlebars');
   $('#show-monster-modal').modal('show');
-  $('.show-monster').empty().append(monster(data));
+  $('.show-monster').empty().append(oneMonster(monster));
 
 };
-
-// const showSuccess = function (data) {
-//   let productTemplate = require ('../templates/product.handlebars');
-//   $('.show-item').prepend(productTemplate(data));
-// };
-
 
 
 

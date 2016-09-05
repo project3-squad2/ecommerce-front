@@ -113,15 +113,6 @@ const onPageLoad = function () {
 
 
 
-// Show monster
-// const showMonsterModal = function showMonsterModal(){
-//   $('#show-monster-modal').modal('show');
-// };
-//
-// const closeModalMonster = function closeModalMonster() {
-//     $('#show-monster-modal').modal('hide');
-// };
-
 
 const onShowMonster = function (id) {
   console.log(id);
@@ -133,6 +124,19 @@ const onShowMonster = function (id) {
 
 };
 
+
+
+// chart
+
+// Change passowrd
+const showCartModal = function showCartModal(){
+  $('#cart-modal').modal('show');
+};
+
+const closeModalCart = function closeModalCart() {
+    $('#cart-modal').modal('hide');
+
+};
 
 
 
@@ -171,6 +175,24 @@ const addHandlers = () => {
       console.log(id);
       onShowMonster(id);
     });
+
+
+
+    $('#cart-modal-link').on('click', function() {
+      showCartModal();
+
+      $('.show-cart').empty();
+
+      let displayCart = require('../templates/cart.handlebars');
+
+      $('.show-cart').append(displayCart());
+
+
+    });
+
+    $('#checkout').on('click', closeModalCart);
+
+
 
 
 

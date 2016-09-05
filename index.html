@@ -33,6 +33,7 @@
                  <li><a class="change-password-trigger" id="change-password-modal-link" href="#">Change Password</a></li>
 
                  <li><a class="sign-out-trigger" id="sign-out-modal-link" href="#">Sign Out</a></li>
+                <li><a class="cart-trigger" id="cart-modal-link" href="#">Cart</a></li>
 
                </ul>
              </div><!-- /.navbar-collapse -->
@@ -190,7 +191,7 @@
 <!-- END OF HANDLEBARS FOR MONSTERS -->
 
 
-
+<!-- show single monster modal -->
 <div class="container">
   <div id="show-monster-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-sm" role="document">
@@ -217,7 +218,39 @@
     </div>
   </div>
 </div>
-<!-- END SIGN-UP MODAL -->
+<!-- END show single monster -->
+
+
+
+<!-- cart modal -->
+<div class="container">
+  <div id="cart-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Cart</h4>
+        </div>
+        <div class="modal-body">
+          <div class= "show-cart">
+            <form id="show-cart">
+              <fieldset>
+
+                <div class="single-cart">
+                      
+                 </div>
+
+                <button type="submit" id="checkout" class="btn btn-warning add-cart-submit" name="submit" >Checkout</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END cart MODAL -->
+
 
     </body>
 </html>
