@@ -5,7 +5,10 @@
 // require('./example');
 const authEvents = require('./auth/events.js');
 const cartEvents = require('./auth/cart_events.js');
+
+const stripeEvents = require('./auth/stripe_events.js');
 $(  () => {
   authEvents.addHandlers();
   cartEvents.addCartHandlers();
+  stripeEvents.addHandlers();
 });
