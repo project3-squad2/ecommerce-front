@@ -191,7 +191,7 @@
 <!-- END OF HANDLEBARS FOR MONSTERS -->
 
 
-<!-- show single monster modal -->
+<!-- show single monster modal
 <div class="container">
   <div id="show-monster-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-sm" role="document">
@@ -208,7 +208,7 @@
                 <div class="single-monster">
 
                  </div>
-
+                 <button class="add-to-cart">Add to cart</button>
                 <button type="submit" id="add-monster" class="btn btn-warning add-monsters-submit" name="submit" >Add monster</button>
               </fieldset>
             </form>
@@ -218,11 +218,83 @@
     </div>
   </div>
 </div>
-<!-- END show single monster -->
+END show single monster -->
+
+<div class="modal fade" id="item" tabindex="-1" role="dialog" aria-labelledby="itemLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <div class="show-item">
+            <form id="item-add">
+              <fieldset>
+                <p>ITEMS</p>
+              </fieldset>
+            </form>
+          </div>
+          <button class="add-to-cart">Add to Cart</button>
+          <p style="display: none" class="item-added">Item added to cart!</p>
+          <p style="display: none" class="invalid">You must select a quantity greater than zero!</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
 <!-- cart modal -->
+<div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="cartLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="cartLabel">Shopping Cart</h4>
+        </div>
+        <div class="modal-body">
+          <div class="show-cart">
+            <div class="row cart-row">
+              <div class="col-md-3">
+                <h5>Item</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Price</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Quantity</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Delete</h5>
+              </div>
+              <br>
+            </div>
+
+
+            <div class="cart-items">
+            </div>
+
+            <h3 class="no-items">Your Cart is Empty!</h3>
+            <h5>Total: </h5>
+            <script src="https://checkout.stripe.com/checkout.js"></script>
+            <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
+            <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button>
+            <h3 class="sign-in-warn">You must be signed in to complete this order</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+<!--
 <div class="container">
   <div id="cart-modal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-sm" role="document">
@@ -233,22 +305,45 @@
         </div>
         <div class="modal-body">
           <div class= "show-cart">
-            <form id="show-cart">
+            <div class="row cart-row">
+              <div class="col-md-3">
+                <h5>Item</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Price</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Quantity</h5>
+              </div>
+              <div class="col-md-3">
+                <h5>Delete</h5>
+              </div>
+              <br>
+            </div> -->
+            <!-- <form id="show-cart">
               <fieldset>
 
                 <div class="single-cart">
-                      
+
                  </div>
 
                 <button type="submit" id="checkout" class="btn btn-warning add-cart-submit" name="submit" >Checkout</button>
               </fieldset>
-            </form>
+            </form> -->
+            <!-- <div class="cart-items">
+            </div>
+            <h3 class="no-items">Your Cart is Empty!</h3>
+            <h5>Total: </h5>
+            <script src="https://checkout.stripe.com/checkout.js"></script>
+            <button style="display: none" type="button" class="btn btn-default create-order" id="save-order-button">Save for later</button>
+            <button style="display: none" type="button" class="btn btn-default checkout" id="checkout-button">Checkout</button>
+            <h3 class="sign-in-warn">You must be signed in to complete this order</h3>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</div> -->
 <!-- END cart MODAL -->
 
 

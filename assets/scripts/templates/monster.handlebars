@@ -1,4 +1,4 @@
-<div class="single-monster">
+<!-- <div class="single-monster">
   <img src={{monster.url}} width="200">
   <p class="price">Price: ${{monster.price}} </p>
   <p class="name">Name: {{monster.name}} </p>
@@ -11,7 +11,22 @@
       <input type="text" style="display: none" value="{{monster._id}}">
     </fieldset>
 
-    <button type="button" class="btn btn-warning delete-monster" data-monster-id="{{_id}}" data-toggle="modal" data-target="#add-monster-modal">Add to cart</button>
 
+  </form>
+</div> -->
+
+
+<div class="single-monster">
+  <img src={{monster.url}} width="200">
+  <p class="price">Price: ${{monster.price}} </p>
+  <p class="name">Name: {{monster.name}} </p>
+  <p>Description: {{monster.description}} <p>
+  <form id="form">
+    <fieldset>
+      <p>Quantity: <input type="number" min="1" placeholder="1"></p>
+      <input type="text" style="display: none" value="{{monster.name}}">
+      <input type="number" style="display: none" value="{{monster.price}}">
+      <input type="text" style="display: none" value="{{monster._id}}">
+    </fieldset>
   </form>
 </div>
