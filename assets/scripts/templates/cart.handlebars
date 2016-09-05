@@ -1,17 +1,16 @@
-<div class="show-cart">
-
-  <p class="price">Price: ${{monster.price}} </p>
-  <p class="name">Name: {{monster.name}} </p>
-
-  <form id="form">
-    <fieldset>
-      <p>Quantity: <input type="number" min="1" placeholder="1"></p>
-      <input type="text" style="display: none" value="{{monster.name}}">
-      <input type="number" style="display: none" value="{{monster.price}}">
-      <input type="text" style="display: none" value="{{monster._id}}">
-    </fieldset>
-
-  <button type="button" class="btn btn-warning delete-monster" data-monster-id="{{_id}}" data-toggle="modal" data-target="#add-monster-modal">Checkout</button>
-
-  </form>
-</div>
+{{#each items}}
+    <div class="row" id="{{name}}">
+      <div class="col-md-3 cart">
+        <p>{{name}}</p>
+      </div>
+      <div class="col-md-3 cart">
+        <p>${{price}}</p>
+      </div>
+      <div class="col-md-3 cart">
+        <input class="quant" type="number" value={{quantity}}>
+      </div>
+      <div class="col-md-3 cart">
+        <button class="x" size="small">x</button>
+      </div><br>
+    </div>
+  {{/each}}

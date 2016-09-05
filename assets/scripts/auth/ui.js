@@ -108,8 +108,8 @@ const successMonsters = (monsters) => {
 const successMonster = (monster) => {
   console.log(monster);
   let oneMonster = require('../templates/monster.handlebars');
-  $('#show-monster-modal').modal('show');
-  $('.show-monster').empty().append(oneMonster(monster));
+  $('#item').modal('show');
+  $('#item-add').empty().append(oneMonster(monster));
 
 };
 

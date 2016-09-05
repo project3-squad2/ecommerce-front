@@ -3,18 +3,15 @@
 
 const getFormFields = require(`../../../lib/get-form-fields`);
 
-
+const cartStorage = require('./cart_storage');
 const api = require('./api');
 const ui = require('./ui');
 
-
-
-
+//AUTH EVENTS
 // Sign up
 const onSignUp = function (event) {
   event.preventDefault();
   let data = getFormFields(this);
-
    api.signUp(data)
    .done(ui.onSuccess)
    .fail(ui.failure);
@@ -29,8 +26,6 @@ const closeModalSignUp = function closeModalSignUp() {
 };
 
 
-
-
 // Sign in
 const showSignInModal = function showSignInModal(){
   $('#sign-in-modal').modal('show');
@@ -42,18 +37,12 @@ const closeModalSignIn = function closeModalSignIn() {
 
 
 const onSignIn = function (event) {
-
   let data = getFormFields(this);
   event.preventDefault();
-
-
   api.signIn(data)
    .done(ui.signInSuccess)
    .fail(ui.failureSignIn);
 };
-
-
-
 
 // Change passowrd
 const showChangePasswordModal = function showChangePasswordModal(){
@@ -62,22 +51,16 @@ const showChangePasswordModal = function showChangePasswordModal(){
 
 const closeModalChangePassword = function closeModalChangePassword() {
     $('#change-password-modal').modal('hide');
-
 };
 
 const onChangePassword = function(event) {
-
   event.preventDefault();
   let data = getFormFields(this);
   console.log(data);
-
     api.changePassword(data)
     .done(ui.success)
     .fail(ui.failure);
-
 };
-
-
 
 // Sign out
 const showSignOutModal = function showSignOutModal(){
@@ -90,30 +73,24 @@ const closeModalSignOut = function closeModalSignOut() {
 
 
 const onSignOut = function (event) {
-
     event.preventDefault();
-
     api.signOut()
    .done(ui.signOutSuccess)
    .fail(ui.failure);
-
 };
-
+//END AUTH EVENTS
 
 
 
 // load all monsters
 const onPageLoad = function () {
   //  debugger;
-
   api.getAllMonsters()
      .done(ui.successMonsters)
      .fail(ui.failure);
 };
 
-
-
-
+//show a single monster
 const onShowMonster = function (id) {
   console.log(id);
     // event.preventDefault();
@@ -125,16 +102,32 @@ const onShowMonster = function (id) {
 };
 
 
+const onAddToCart = function (event) {
+  event.preventDefault();
+  let form = document.getElementById("form");
+  console.log(form);
+  let targ = form[1];
+    console.log(targ);
+  let val = targ.value;
+  if (val > 0) {
+    cartStorage.addItems();
+    $('.item-added').fadeIn(500).fadeOut(1000);
+    if (cartStorage.cartObj.items.length > 0) {
+      $('.no-items').hide();
+    }
+  } else {
+    $('.invalid').fadeIn(500).fadeOut(1500);
+  }
+};
 
-// chart
 
-// Change passowrd
+
 const showCartModal = function showCartModal(){
-  $('#cart-modal').modal('show');
+  $('#cart').modal('show');
 };
 
 const closeModalCart = function closeModalCart() {
-    $('#cart-modal').modal('hide');
+    $('#cart').modal('hide');
 
 };
 
@@ -142,7 +135,6 @@ const closeModalCart = function closeModalCart() {
 
 
 const addHandlers = () => {
-    $(document).ready(onPageLoad);
 
     $('#sign-up-modal-link').on('click', showSignUpModal);
     $('#sign-up').on('submit', onSignUp);
@@ -156,9 +148,6 @@ const addHandlers = () => {
     $('#change-password').on('submit', onChangePassword);
     $('#change-password1').on('click', closeModalChangePassword);
 
-
-
-
     $('#sign-out-modal-link').on('click', showSignOutModal);
     $('#sign-out').on('submit', onSignOut);
     $('#sign-out1').on('click', closeModalSignOut);
@@ -170,6 +159,10 @@ const addHandlers = () => {
 
     });
 
+//displays all products upon page load
+    $(document).ready(onPageLoad);
+
+//show a single monster when the monster is clicked
     $(document).on('click', '.col-md-4', function(){
       let id = $(this).data('id');
       console.log(id);
@@ -177,27 +170,15 @@ const addHandlers = () => {
     });
 
 
-
+    $('.add-to-cart').on('click', onAddToCart);
     $('#cart-modal-link').on('click', function() {
       showCartModal();
-
-      $('.show-cart').empty();
-
-      let displayCart = require('../templates/cart.handlebars');
-
-      $('.show-cart').append(displayCart());
-
-
+      // $('.show-cart').empty();
+      // let displayCart = require('../templates/cart.handlebars');
+      // $('.show-cart').empty().append(displayCart(items));
     });
 
     $('#checkout').on('click', closeModalCart);
-
-
-
-
-
-
-
 
 };
 
