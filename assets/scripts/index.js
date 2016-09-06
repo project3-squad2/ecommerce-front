@@ -7,8 +7,11 @@ const authEvents = require('./auth/events.js');
 const cartEvents = require('./auth/cart_events.js');
 
 const stripeEvents = require('./auth/stripe_events.js');
+const orderEvents = require('./auth/order_events.js');
+
 $(  () => {
   authEvents.addHandlers();
   cartEvents.addCartHandlers();
   stripeEvents.addHandlers();
+  orderEvents.addHandlers();
 });

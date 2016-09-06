@@ -1,12 +1,12 @@
 'use strict';
 
-const app = require('../app.js');
+const app = require('../app');
 
 const createOrder = (data) => {
   // console.log(data);
   return new Promise((resolve, reject) => {
     return $.ajax({
-      url: app.host + '/orders',
+      url: app.api + '/orders',
       method: "POST",
       headers: {
         Authorization: 'Token token=' + app.user.token,
@@ -26,7 +26,7 @@ const addStripeCharge = (data) => {
   // console.log(data);
   return new Promise((resolve, reject) => {
     return $.ajax({
-      url: app.host + '/charge',
+      url: app.api + '/charge',
       method: "POST",
       headers: {
         Authorization: 'Token token=' + app.user.token,
@@ -45,7 +45,7 @@ const addStripeCharge = (data) => {
 const changePaidStatus = () => {
   return new Promise((resolve, reject) => {
     return $.ajax({
-      url: app.host + '/orders/' + app.order._id,
+      url: app.api + '/orders/' + app.order._id,
       method: "PATCH",
       headers: {
         Authorization: 'Token token=' + app.user.token,

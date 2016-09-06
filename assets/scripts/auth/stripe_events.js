@@ -36,7 +36,6 @@ const onCheckout = (event) => {
   // opens stripe checkout
   handler.open({
     name: 'Monster for hire',
-    description: 'purchase',
     closed: function() {
       // console.log('done!!');
       // console.log(app.order);
