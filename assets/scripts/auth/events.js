@@ -12,6 +12,7 @@ const ui = require('./ui');
 const onSignUp = function (event) {
   event.preventDefault();
   let data = getFormFields(this);
+  // console.log(data);
    api.signUp(data)
    .done(ui.onSuccess)
    .fail(ui.failure);
@@ -37,7 +38,9 @@ const closeModalSignIn = function closeModalSignIn() {
 
 
 const onSignIn = function (event) {
+
   let data = getFormFields(this);
+  console.log(data);
   event.preventDefault();
   api.signIn(data)
    .done(ui.signInSuccess)
@@ -145,7 +148,23 @@ const showOrdersModal = function showOrdersModal(){
 //     $('#sign-out-modal').modal('hide');
 // };
 
+const uploadMonster = function (){
 
+  event.preventDefault();
+
+  let data = new FormData(this);
+  console.log(data);
+    $.ajax({
+    url: 'http://localhost:3000/monsters',
+    method: 'POST',
+    contentType: false,
+    processData: false,
+    data,
+  }).done(ui.uploadSuccess)
+    .fail((err) => console.error(err));
+
+
+};
 
 
 
@@ -198,7 +217,27 @@ $('#orders-modal-link').on('click', showOrdersModal);
 $('#sign-out').on('submit', onSignOut);
 $('#sign-out1').on('click', closeModalSignOut);
 
+$('#multipart-form-data').on('submit', uploadMonster);
 
+
+
+
+
+// $('.btn btn-warning delete-monster').on('click', onDeleteMonster);
+$('.delete-monster-btn').on('click', function (event) {
+     event.preventDefault();
+     let id = $(this).attr("data-monster-id");
+
+    //  debugger;
+     api.deleteMonster(ui.deleteMonsterSuccess, ui.failure, id);
+   });
+
+  //adds a job id to the submit button
+  $('#admin').on('click', '.delete-monster', function(event){
+  event.preventDefault();
+  let id = $(event.target).attr("data-monster-id");
+  $(".delete-monster-btn").attr("data-monster-id", id);
+  });
 
 
 

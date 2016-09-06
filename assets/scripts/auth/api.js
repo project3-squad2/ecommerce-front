@@ -51,6 +51,32 @@ const showMonster = (id) => $.ajax({
     method: 'GET',
 });
 
+const getAllPictures = (success, failure) => {
+  return $.ajax({
+    url: app.api + '/monsters',
+    method: "GET",
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+  })
+  .done(success)
+  .fail(failure);
+};
+
+
+
+
+const deleteMonster = (success, failure, id) => {
+    $.ajax({
+      url: app.api + '/monsters/' + id,
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Token token=' + app.user.token,
+      },
+    })
+    .done(success)
+    .fail(failure);
+  };
 
 
 module.exports = {
@@ -59,6 +85,9 @@ module.exports = {
   changePassword,
   signOut,
   getAllMonsters,
-  showMonster
+  showMonster,
+  getAllPictures,
+  deleteMonster
+
 
 };
