@@ -13,12 +13,12 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 //site-title color
 .jumbotron h1 {
-  color: red;
+  color: #993300;
 }
 
 .title-description {
   text-align: center;
-  color: red;
+  color: #993300;
 }
 
 
@@ -47,17 +47,44 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 }
 
 .modal-body {
-  background-color: #9FAD9A;
+  background-color:  #993300;
+  color: white;
 }
 
 .modal-header {
-  background-color: #e6ffff;
+  background-color: #331000;
+}
+
+.modal-title {
+  color: #fff;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #331000;
+    border-color: #331000;
 }
 
 .modal-content {
     border-radius: 10px;
-    border: 3px solid white;
+    border: 5px solid #fff;
 }
+
+span {
+  color: white;
+}
+
+legend {
+  color: #fff;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: black;
+}
+
 
 #add-to-cart {
     margin-left: 53%;
@@ -71,6 +98,14 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 img {
     vertical-align: middle;
     border-radius: 10px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
 }
 
 // PRODUCTS FOR SALE END
