@@ -4,9 +4,9 @@ const app = require('../app.js');
 
 
 
-const getOrderHistory = () => {
+const getPreviousOrders = () => {
   return $.ajax({
-    url: app.host + '/owner_orders/' + app.user._id,
+    url: app.api + '/owner_orders/' + app.user._id,
     method: "GET",
     headers: {
       Authorization: 'Token token=' + app.user.token,
@@ -17,7 +17,7 @@ const getOrderHistory = () => {
 const deleteOrder = function (orderIDtoDelete) {
   return $.ajax(
   {
-    url: app.host + '/orders/' + orderIDtoDelete,
+    url: app.api + '/orders/' + orderIDtoDelete,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + app.user.token,
@@ -27,6 +27,6 @@ const deleteOrder = function (orderIDtoDelete) {
 };
 
 module.exports = {
-  getOrderHistory,
+  getPreviousOrders,
   deleteOrder,
 };

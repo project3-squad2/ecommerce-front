@@ -3,9 +3,19 @@
 const app = require('../app.js');
 
 const getOrderSuccess = (data) => {
-  // console.log(data);
-  app.orders = data.orders;
+  console.log(data);
 
+
+  app.orders = data.orders;
+  for (let i = 0; i < app.orders.length; i++) {
+    console.log(app.orders[i]._owner);
+    console.log(app.orders[i]._id);
+    console.log(app.orders[i].total);
+    for(let j=0; j<app.orders[i].items.length;j++) {
+    console.log(app.orders[i].items[j].name);
+    console.log(app.orders[i].items[j].quantity);
+  }
+}
   if (app.orders.length !== 0)
   {
     //with delete column

@@ -1,7 +1,9 @@
 'use strict';
 
-const api = require('./api.js');
-const ui = require('./ui.js');
+const api = require('./api');
+const orderApi = require('./order_api');
+const orderUi = require('./order_ui');
+const ui = require('./ui');
 
 const onCart = function(event) {
   event.preventDefault();
@@ -21,12 +23,11 @@ const onBrowse = function(event) {
   $('#products').show();
 };
 
-const onGetOrderHistory = (event) => {
+const onPreviousOrders = (event) => {
   event.preventDefault();
-  // console.log("this is get order history");
-  api.getOrderHistory()
-  .done(ui.getOrderSuccess);
-  // .fail(ui.failure);
+  orderApi.getPreviousOrders()
+  .done(orderUi.getOrderSuccess)
+  .fail(orderUi.failure);
 };
 
 const onDeleteOrder = (event)=> {
@@ -42,7 +43,7 @@ const addHandlers = () => {
   $('#cart-button').on('click', onCart);
   $('#check-out-button').on('click', onCheckout);
   $('#logo').on('click', onBrowse);
-  $('#get-orders').on('submit', onGetOrderHistory);
+  $('#previous-orders').on('submit', onPreviousOrders);
   $('#checkout-page').hide();
   $(document).on('click','.deleteButtons', onDeleteOrder);
 };
