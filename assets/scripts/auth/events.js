@@ -232,7 +232,7 @@ $('.delete-monster-btn').on('click', function (event) {
      api.deleteMonster(ui.deleteMonsterSuccess, ui.failure, id);
    });
 
-  //adds a job id to the submit button
+  //adds a monster id to the submit button
   $('#admin').on('click', '.delete-monster', function(event){
   event.preventDefault();
   let id = $(event.target).attr("data-monster-id");
