@@ -1,7 +1,7 @@
 'use strict';
 
 const app = require('../app');
-// const api = require('./api');
+const api = require('./api');
 
 
 
@@ -37,8 +37,6 @@ const failureSignIn = () => {
 
   $('#sign-in' ).each(function(){
   this.reset();
-
-
 });
 };
 
@@ -67,18 +65,69 @@ this.reset();
 
 
 
+
+
+// handlebars
+let displayUploads = function(monsters){
+  // debugger;
+  let picturesListingTemplate = require('../templates/pictures.handlebars');
+
+  // remove all the content table
+   $('#all-monsters').empty();
+  // append content from GET request using handlebars
+  $('#all-monsters').append(picturesListingTemplate({
+
+  // debugger;
+    monsters
+  }));
+};
+
+
+
+
+
+const showPicturesSuccess = (data) => {
+
+  app.monsters = data.monsters;
+
+  displayUploads(data);
+  console.log(app.monsters);
+};
+
+
+const uploadSuccess =  (data) => {
+  console.log(data);
+
+  api.getAllPictures(showPicturesSuccess, failure);
+
+};
+
+
+
+
+
+
+
 // Sign in
 const signInSuccess = (data) => {
   console.log(data);
   app.user = data.user;
   console.log(app.user._id);
   console.log(app.user.token);
+
+  console.log(app.user.admin);
+
+   if(app.user.admin === true){
+       $('.jumbotron, #monsters').hide();
+       $('#admin, #multipart-form-data, .content').show();
+
+
+         api.getAllPictures(showPicturesSuccess, failure);
+
+   }
+
    $('.sign-in-warn').hide();
   $('#checkout-button').show();
-
-
-
-
 };
 
 
@@ -94,7 +143,6 @@ const signOutSuccess = () => {
 
 
 // success monsters, show up!
-
 const successMonsters = (monsters) => {
    console.log(monsters);
 
@@ -121,6 +169,21 @@ const successMonster = (monster) => {
 
 
 
+const deleteMonsterSuccess = (data) => {
+  console.log(data);
+  console.log("Monster is deleted!");
+
+  displayUploads();
+
+
+
+  // fire ajax if delete was successful and delete if on the front end
+  api.getAllPictures(showPicturesSuccess, failure);
+};
+
+
+
+
 
 
 
@@ -134,6 +197,9 @@ module.exports = {
   app,
   failureSignIn,
   successMonsters,
+  uploadSuccess,
+  showPicturesSuccess,
+  deleteMonsterSuccess
 
 
 
