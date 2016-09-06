@@ -1,0 +1,34 @@
+<!-- {{#each orders}}
+  <div class="previous-monsters">
+    <div class="row" id="{{name}}">
+      <div class="col-md-3 cart">
+        <p>{{this.name}}</p>
+      </div>
+      <div class="col-md-3 cart">
+        <p>${{this.price}}</p>
+      </div>
+      <div class="col-md-3 cart">
+        <input class="quant" type="number" value={{quantity}}>
+      </div>
+      <div class="col-md-3 cart">
+        <button class="x" size="small">x</button>
+      </div><br>
+    </div>
+  {{/each}} -->
+
+  {{>partial_orders}}
+
+  <!-- {{#each this}} -->
+    {{#each orders}}
+  <!-- INLINE STYLES BAD(add to SCSS) -->
+  <!-- <table class="table"> -->
+    <tr>
+      <td>{{this.name}}</td>
+      <td>{{this.price}}</td>
+      <td>{{this.quantity}}</td>
+      <td>{{this.total}}</td>
+      <td>{{this.date}}</td>
+  </tr>
+  <!-- </table> -->
+    {{/each}}
+  <!-- {{/each}} -->
