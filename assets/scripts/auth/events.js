@@ -134,6 +134,19 @@ const showCartModal = function showCartModal(){
 
 
 
+// orders
+const showOrdersModal = function showOrdersModal(){
+  $('#orders-modal').modal('show');
+};
+
+
+
+// const closeModalSignOut = function closeModalSignOut() {
+//     $('#sign-out-modal').modal('hide');
+// };
+
+
+
 
 
 
@@ -172,11 +185,20 @@ const addHandlers = () => {
       onShowMonster(id);
     });
 
-
+  // cart
     $('.add-to-cart').on('click', onAddToCart);
     $('#cart-modal-link').on('click', function() {
       showCartModal();
     });
+
+
+// orders
+$('#orders-modal-link').on('click', showOrdersModal);
+
+$('#sign-out').on('submit', onSignOut);
+$('#sign-out1').on('click', closeModalSignOut);
+
+
 
 
 
