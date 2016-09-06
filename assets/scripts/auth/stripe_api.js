@@ -13,6 +13,7 @@ const createOrder = (data) => {
       },
       data,
       success: (response) => {
+        console.log(response);
         resolve(response);
       },
       error: (error) => {
