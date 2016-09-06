@@ -2,7 +2,7 @@
 
 const app = require('../app');
 // const api = require('../api');
-
+// const ui = require('./ui');
 
 const signIn = (data) => $.ajax({
   url: app.api + '/sign-in',
@@ -79,6 +79,40 @@ const deleteMonster = (success, failure, id) => {
   };
 
 
+
+  const updateMonster = (success, failure, data, id) => {
+
+    $.ajax({
+      method: "PATCH",
+      url: app.api + '/monsters/' + id,
+      data,
+      headers: {
+        Authorization: 'Token token='+ app.user.token,
+      },
+    })
+    .done(success)
+    .fail(failure);
+  };
+
+  // const updateMonster = function (success, failure, data, id){
+  //
+  //   event.preventDefault();
+  //
+  //
+  //   console.log(data);
+  //     $.ajax({
+  //     url: 'http://localhost:3000/monsters/' + id,
+  //     method: 'PATCH',
+  //     contentType: false,
+  //     processData: false,
+  //     data,
+  //   }).done(ui.uploadSuccess)
+  //     .fail((err) => console.error(err));
+  //
+  //
+  // };
+
+
 module.exports = {
   signUp,
   signIn,
@@ -87,7 +121,8 @@ module.exports = {
   getAllMonsters,
   showMonster,
   getAllPictures,
-  deleteMonster
+  deleteMonster,
+  updateMonster
 
 
 };
