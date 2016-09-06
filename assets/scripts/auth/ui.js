@@ -1,7 +1,7 @@
 'use strict';
 
 const app = require('../app');
-const api = require('./api');
+// const api = require('./api');
 
 
 
@@ -73,6 +73,8 @@ const signInSuccess = (data) => {
   app.user = data.user;
   console.log(app.user._id);
   console.log(app.user.token);
+   $('.sign-in-warn').hide();
+  $('#checkout-button').show();
 
 
 

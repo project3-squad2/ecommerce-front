@@ -34,11 +34,14 @@
 
                  <li><a class="sign-out-trigger" id="sign-out-modal-link" href="#">Sign Out</a></li>
                 <li><a class="cart-trigger" id="cart-modal-link" href="#">Cart</a></li>
+                <li><a class="orders-trigger" id="orders-modal-link" href="#">Previous orders</a></li>
 
                </ul>
              </div><!-- /.navbar-collapse -->
            </div><!-- /.container-fluid -->
          </nav>
+
+
 
 <!--  SIGN-UP MODAL -->
           <div class="container">
@@ -69,9 +72,7 @@
                         </div>
                         <br>
 
-                        <div class="form-group">
-                          <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#sign-in-modal" class="register-opp">Already have an account?</a>
-                        </div>
+
                         </br>
                         <button type="submit" id="sign-up1" class="btn btn-warning sign-up-submit" name="submit" >Sign Up</button>
                       </fieldset>
@@ -218,8 +219,10 @@
     </div>
   </div>
 </div>
-END show single monster -->
 
+
+END show single monster -->
+<div class="container">
 <div class="modal fade" id="item" tabindex="-1" role="dialog" aria-labelledby="itemLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -241,7 +244,7 @@ END show single monster -->
       </div>
     </div>
   </div>
-
+</div>
 
 
 <!-- cart modal -->
@@ -287,9 +290,79 @@ END show single monster -->
   </div>
 
 
+<!-- orders modal -->
+<div class="container">
+<div class="modal fade" id="orders-modal" tabindex="-1" role="dialog" aria-labelledby="itemLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+      </div>
+      <div class="modal-body">
 
 
 
+          <form id="get-orders">
+            <fieldset>
+              <legend>Get Order History</legend>
+              <input type="submit" name="submit" value="Get Order History">
+            </fieldset>
+          </form>
+
+
+          <h4> ORDER HISTORY </h4>
+          <h4 id="order-history"> </h4>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- order history -->
+
+<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="profileLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+        </div>
+        <div class="modal-body">
+
+
+
+            <form id="get-orders">
+              <fieldset>
+                <legend>Get Order History</legend>
+                <input type="submit" name="submit" value="Get Order History">
+              </fieldset>
+            </form>
+
+
+            <h3> Order History </h3>
+            <h4 id="order-history"> </h4>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div id='content' class="content">
+    <div id='products'>
+    </div>
+
+    <div id='checkout-page'>
+      <h1>THIS IS THE CHECKOUT PAGE</h1>
+    </div>
+
+  </div>
 
 
 

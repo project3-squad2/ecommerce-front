@@ -13,12 +13,12 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 //site-title color
 .jumbotron h1 {
-  color: red;
+  color: #993300;
 }
 
 .title-description {
   text-align: center;
-  color: red;
+  color: #993300;
 }
 
 
@@ -40,6 +40,72 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 .monster-price {
   text-align: center;
+}
+
+.single-monster {
+  text-align: center;
+}
+
+.modal-body {
+  background-color:  #993300;
+  color: white;
+}
+
+.modal-header {
+  background-color: #331000;
+}
+
+.modal-title {
+  color: #fff;
+}
+
+.btn-warning {
+    color: #fff;
+    background-color: #331000;
+    border-color: #331000;
+}
+
+.modal-content {
+    border-radius: 10px;
+    border: 5px solid #fff;
+}
+
+span {
+  color: white;
+}
+
+legend {
+  color: #fff;
+}
+
+input, button, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: black;
+}
+
+
+#add-to-cart {
+    margin-left: 53%;
+}
+
+// p {
+//   color: white;
+//   font-weight: bold;
+// }
+
+img {
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
 }
 
 // PRODUCTS FOR SALE END

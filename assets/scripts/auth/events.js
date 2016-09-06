@@ -101,6 +101,11 @@ const onShowMonster = function (id) {
 
 };
 
+const closeModalCart = function closeModalCart() {
+    $('#item').modal('hide');
+
+};
+
 
 const onAddToCart = function (event) {
   event.preventDefault();
@@ -110,6 +115,7 @@ const onAddToCart = function (event) {
     console.log(targ);
   let val = targ.value;
   if (val > 0) {
+    closeModalCart();
     cartStorage.addItems();
     $('.item-added').fadeIn(500).fadeOut(1000);
     if (cartStorage.cartObj.items.length > 0) {
@@ -126,10 +132,20 @@ const showCartModal = function showCartModal(){
   $('#cart').modal('show');
 };
 
-const closeModalCart = function closeModalCart() {
-    $('#cart').modal('hide');
 
+
+// orders
+const showOrdersModal = function showOrdersModal(){
+  $('#orders-modal').modal('show');
 };
+
+
+
+// const closeModalSignOut = function closeModalSignOut() {
+//     $('#sign-out-modal').modal('hide');
+// };
+
+
 
 
 
@@ -169,16 +185,22 @@ const addHandlers = () => {
       onShowMonster(id);
     });
 
-
+  // cart
     $('.add-to-cart').on('click', onAddToCart);
     $('#cart-modal-link').on('click', function() {
       showCartModal();
-      // $('.show-cart').empty();
-      // let displayCart = require('../templates/cart.handlebars');
-      // $('.show-cart').empty().append(displayCart(items));
     });
 
-    $('#checkout').on('click', closeModalCart);
+
+// orders
+$('#orders-modal-link').on('click', showOrdersModal);
+
+$('#sign-out').on('submit', onSignOut);
+$('#sign-out1').on('click', closeModalSignOut);
+
+
+
+
 
 };
 
