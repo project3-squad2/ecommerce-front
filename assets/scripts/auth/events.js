@@ -241,6 +241,29 @@ $('.delete-monster-btn').on('click', function (event) {
 
 
 
+
+
+
+  $('#update-monster').on('submit', function (event) {
+        event.preventDefault();
+        let id = $(".update-monster-btn").attr("data-monster-id");
+        let data = getFormFields(this);
+        // debugger;
+        api.updateMonster(ui.updateMonsterSuccess, ui.failure, data, id);
+      });
+
+      //adds a job id to the submit button
+      $('#admin').on('click', '.update-monster', function(event){
+        event.preventDefault();
+        let id = $(event.target).attr("data-monster-id");
+        $(".update-monster-btn").attr("data-monster-id", id);
+    });
+
+       $(".update-monster-btn").on('click', function () {
+            $("#update-monster-modal").hide();
+              $(".modal-backdrop").hide();
+       });
+
 };
 
 

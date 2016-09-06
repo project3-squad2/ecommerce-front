@@ -14,4 +14,5 @@ $(  () => {
   cartEvents.addCartHandlers();
   stripeEvents.addHandlers();
   orderEvents.addHandlers();
+  $('#multipart-form-data, #admin').hide();
 });

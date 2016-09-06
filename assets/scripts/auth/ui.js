@@ -134,7 +134,6 @@ const signInSuccess = (data) => {
 // Sign out
 const signOutSuccess = () => {
 
-
   console.log('You signed out succesfully!');
   delete app.user;
 
@@ -175,12 +174,21 @@ const deleteMonsterSuccess = (data) => {
 
   displayUploads();
 
-
-
   // fire ajax if delete was successful and delete if on the front end
   api.getAllPictures(showPicturesSuccess, failure);
 };
 
+
+
+// update
+const updateMonsterSuccess = (data) => {
+  console.log(data);
+  console.log("Monster was updated!");
+
+
+  // fire ajax if update was successful and show jobs on the front end
+  api.getAllPictures(showPicturesSuccess, failure);
+};
 
 
 
@@ -199,7 +207,8 @@ module.exports = {
   successMonsters,
   uploadSuccess,
   showPicturesSuccess,
-  deleteMonsterSuccess
+  deleteMonsterSuccess,
+  updateMonsterSuccess
 
 
 

@@ -342,11 +342,14 @@
   </div>
 
 
-<div id="admin">
-     HEY admins!
+     <div id="admin">
+        HEY admins!
      <div id="all-monsters">
 
+
      </div>
+
+
 
 
      <form id="multipart-form-data" action="http://localhost:3000/monsters" method="post" enctype="multipart/form-data">
@@ -368,6 +371,45 @@
       <input type="submit" name="submit" value="Upload">
     </fieldset>
   </form>
+
+  <!-- Modal to update a monster -->
+ <div class="modal fade" id="update-monster-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title" id="myModalLabel">Update monster</h4>
+       </div>
+
+       <div class="modal-body">
+         <form class="form-block " id="update-monster">
+
+           <div class="form-group">
+             <legend>Description</legend>
+             <textarea class="form-control" id="exampleTextarea" name="monster[description]" placeholder="description" rows="5"></textarea>
+           </div>
+
+           <div class="form-group">
+             <legend>Name</legend>
+           <input type="text" class="form-control" name="monster[name]" placeholder="name">
+           </div>
+
+           <div class="form-group">
+             <legend>Price</legend>
+           <input type="text" class="form-control" name="monster[price]" placeholder="price">
+           </div>
+
+            <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success update-monster-btn" >Update monster</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
   <div class="modal fade" id="delete-monster-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 <div class="modal-dialog" role="document">
