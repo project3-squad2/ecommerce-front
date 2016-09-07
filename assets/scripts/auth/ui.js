@@ -118,7 +118,7 @@ const signInSuccess = (data) => {
   console.log(app.user.admin);
 
    if(app.user.admin === true){
-       $('.jumbotron, #monsters').hide();
+       $('.jumbotron, #monsters, #cart-modal-link, #sign-up-modal-link, #sign-in-modal-link, #orders-modal-link').hide();
        $('#admin, #multipart-form-data, .content').show();
 
 
