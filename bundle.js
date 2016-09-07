@@ -66,10 +66,10 @@ webpackJsonp([0],[
 	var onSignUp = function onSignUp(event) {
 	  event.preventDefault();
 	  var data = getFormFields(this);
-	  // console.log(data);
 	  api.signUp(data).done(ui.onSuccess).fail(ui.failure);
 	};
 
+	// sign up modal show and hide
 	var showSignUpModal = function showSignUpModal() {
 	  $('#sign-up-modal').modal('show');
 	};
@@ -78,7 +78,7 @@ webpackJsonp([0],[
 	  $('#sign-up-modal').modal('hide');
 	};
 
-	// Sign in
+	// sign in modal show and hide
 	var showSignInModal = function showSignInModal() {
 	  $('#sign-in-modal').modal('show');
 	};
@@ -87,15 +87,15 @@ webpackJsonp([0],[
 	  $('#sign-in-modal').modal('hide');
 	};
 
+	// sign in
 	var onSignIn = function onSignIn(event) {
-
 	  var data = getFormFields(this);
 	  console.log(data);
 	  event.preventDefault();
 	  api.signIn(data).done(ui.signInSuccess).fail(ui.failureSignIn);
 	};
 
-	// Change passowrd
+	// Change passowrd modal show and hide
 	var showChangePasswordModal = function showChangePasswordModal() {
 	  $('#change-password-modal').modal('show');
 	};
@@ -104,6 +104,7 @@ webpackJsonp([0],[
 	  $('#change-password-modal').modal('hide');
 	};
 
+	// change password
 	var onChangePassword = function onChangePassword(event) {
 	  event.preventDefault();
 	  var data = getFormFields(this);
@@ -111,7 +112,7 @@ webpackJsonp([0],[
 	  api.changePassword(data).done(ui.success).fail(ui.failure);
 	};
 
-	// Sign out
+	// Sign out modal show and hide
 	var showSignOutModal = function showSignOutModal() {
 	  $('#sign-out-modal').modal('show');
 	};
@@ -120,6 +121,7 @@ webpackJsonp([0],[
 	  $('#sign-out-modal').modal('hide');
 	};
 
+	// sign out
 	var onSignOut = function onSignOut(event) {
 	  event.preventDefault();
 	  api.signOut().done(ui.signOutSuccess).fail(ui.failure);
@@ -129,27 +131,23 @@ webpackJsonp([0],[
 
 	// load all monsters
 	var onPageLoad = function onPageLoad() {
-	  //  debugger;
 	  api.getAllMonsters().done(ui.successMonsters).fail(ui.failure);
 	};
 
 	//show a single monster
 	var onShowMonster = function onShowMonster(id) {
-	  console.log(id);
-	  // event.preventDefault();
-	  api.showMonster(id)
-	  // ui.successMonster();
-	  .done(ui.successMonster).fail(ui.failure);
+	  api.showMonster(id).done(ui.successMonster).fail(ui.failure);
 	};
 
+	// close cart modal
 	var closeModalCart = function closeModalCart() {
 	  $('#item').modal('hide');
 	};
 
+	// add monsters to cart
 	var onAddToCart = function onAddToCart(event) {
 	  event.preventDefault();
 	  var form = document.getElementById("form");
-	  console.log(form);
 	  var targ = form[1];
 	  console.log(targ);
 	  var val = targ.value;
@@ -165,27 +163,21 @@ webpackJsonp([0],[
 	  }
 	};
 
+	// show cart modal
 	var showCartModal = function showCartModal() {
 	  $('#cart').modal('show');
 	};
 
-	// orders
+	// orders modal show
 	var showOrdersModal = function showOrdersModal() {
 	  $('#orders-modal').modal('show');
 	};
 
-	// const closeModalSignOut = function closeModalSignOut() {
-	//     $('#sign-out-modal').modal('hide');
-	// };
-
 	var uploadMonster = function uploadMonster() {
-
 	  event.preventDefault();
-
 	  var data = new FormData(this);
-	  console.log(data);
 	  $.ajax({
-	    url: 'http://localhost:3000/monsters',
+	    url: 'https://fathomless-everglades-52108.herokuapp.com/monsters',
 	    method: 'POST',
 	    contentType: false,
 	    processData: false,
@@ -215,7 +207,6 @@ webpackJsonp([0],[
 
 	  $("#sign-out1").on('click', function () {
 	    $('#table, #create-job-modal-link').hide();
-
 	    location.reload();
 	  });
 
@@ -241,14 +232,13 @@ webpackJsonp([0],[
 	  $('#sign-out').on('submit', onSignOut);
 	  $('#sign-out1').on('click', closeModalSignOut);
 
+	  // aws ajax
 	  $('#multipart-form-data').on('submit', uploadMonster);
 
-	  // $('.btn btn-warning delete-monster').on('click', onDeleteMonster);
+	  // delete monster (data-id)
 	  $('.delete-monster-btn').on('click', function (event) {
 	    event.preventDefault();
 	    var id = $(this).attr("data-monster-id");
-
-	    //  debugger;
 	    api.deleteMonster(ui.deleteMonsterSuccess, ui.failure, id);
 	  });
 
@@ -259,11 +249,11 @@ webpackJsonp([0],[
 	    $(".delete-monster-btn").attr("data-monster-id", id);
 	  });
 
+	  // update monster (data-id)
 	  $('#update-monster').on('submit', function (event) {
 	    event.preventDefault();
 	    var id = $(".update-monster-btn").attr("data-monster-id");
 	    var data = getFormFields(this);
-	    // debugger;
 	    api.updateMonster(ui.updateMonsterSuccess, ui.failure, data, id);
 	  });
 
@@ -274,6 +264,7 @@ webpackJsonp([0],[
 	    $(".update-monster-btn").attr("data-monster-id", id);
 	  });
 
+	  //adds a monster id to the click button
 	  $(".update-monster-btn").on('click', function () {
 	    $("#update-monster-modal").hide();
 	    $(".modal-backdrop").hide();
@@ -364,6 +355,7 @@ webpackJsonp([0],[
 	  total: 0
 	};
 
+	// are there monsters in cart
 	var inCartStatus = "";
 	var arr = cartObj.items;
 
@@ -374,10 +366,12 @@ webpackJsonp([0],[
 	  }
 	};
 
+	// total price
 	var calculateTotal = function calculateTotal(val) {
 	  this.push(val.price * val.quantity);
 	};
 
+	// update total number of monsters
 	var updateTotal = function updateTotal() {
 	  var itemTotal = [];
 	  arr.forEach(calculateTotal, itemTotal);
@@ -387,17 +381,18 @@ webpackJsonp([0],[
 	  $('.show-cart').children('h5').text("Total: $" + cartObj.total);
 	};
 
+	// populate modal cart
 	var populateCart = function populateCart(data) {
 	  var cartTemplate = __webpack_require__(6);
 	  $('.cart-items').html(cartTemplate(data));
 	};
 
+	// add items in cart
 	var addItems = function addItems() {
 	  var cartItem = [];
 	  inCartStatus = "";
 	  //form is the form id for monsters that populates within handlebars.
 	  var form = document.getElementById("form");
-	  // let form =  $('#form');
 	  for (var i = 1; i < 5; i++) {
 	    var field = form[i];
 	    cartItem.push(field.value);
@@ -431,7 +426,7 @@ webpackJsonp([0],[
 	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return "    <div class=\"row\" id=\""
+	  return "\n    <div class=\"row\" id=\""
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
 	    + "\">\n      <div class=\"col-md-3 cart\">\n        <p>"
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
@@ -439,7 +434,7 @@ webpackJsonp([0],[
 	    + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
 	    + "</p>\n      </div>\n      <div class=\"col-md-3 cart\">\n        <input class=\"quant\" type=\"number\" value="
 	    + alias4(((helper = (helper = helpers.quantity || (depth0 != null ? depth0.quantity : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"quantity","hash":{},"data":data}) : helper)))
-	    + ">\n      </div>\n      <div class=\"col-md-3 cart\">\n        <button class=\"x\" size=\"small\">x</button>\n      </div><br>\n    </div>\n";
+	    + ">\n      </div>\n      <div class=\"col-md-3 cart\">\n        <button class=\"x\" size=\"small\">x</button>\n      </div><br>\n    </div>\n    \n";
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var stack1;
 
@@ -1628,9 +1623,8 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var app = __webpack_require__(27);
-	// const api = require('../api');
-	// const ui = require('./ui');
 
+	// sign in
 	var signIn = function signIn(data) {
 	  return $.ajax({
 	    url: app.api + '/sign-in',
@@ -1639,6 +1633,7 @@ webpackJsonp([0],[
 	  });
 	};
 
+	// change password
 	var changePassword = function changePassword(data) {
 	  return $.ajax({
 	    url: app.api + '/change-password/' + app.user._id,
@@ -1650,6 +1645,7 @@ webpackJsonp([0],[
 	  });
 	};
 
+	// sign up
 	var signUp = function signUp(data) {
 	  return $.ajax({
 	    url: app.api + '/sign-up',
@@ -1658,6 +1654,7 @@ webpackJsonp([0],[
 	  });
 	};
 
+	// sign out
 	var signOut = function signOut() {
 	  return $.ajax({
 	    url: app.api + '/sign-out/' + app.user._id,
@@ -1668,14 +1665,15 @@ webpackJsonp([0],[
 	  });
 	};
 
+	// show all monsters on main page
 	var getAllMonsters = function getAllMonsters() {
 	  return $.ajax({
 	    url: app.api + '/monsters/',
 	    method: 'GET'
-
 	  });
 	};
 
+	// show single monster in modal
 	var showMonster = function showMonster(id) {
 	  return $.ajax({
 	    url: app.api + '/monsters/' + id,
@@ -1683,6 +1681,7 @@ webpackJsonp([0],[
 	  });
 	};
 
+	// get all monsters for Admin panel
 	var getAllPictures = function getAllPictures(success, failure) {
 	  return $.ajax({
 	    url: app.api + '/monsters',
@@ -1693,6 +1692,7 @@ webpackJsonp([0],[
 	  }).done(success).fail(failure);
 	};
 
+	// delete monster
 	var deleteMonster = function deleteMonster(success, failure, id) {
 	  $.ajax({
 	    url: app.api + '/monsters/' + id,
@@ -1703,8 +1703,8 @@ webpackJsonp([0],[
 	  }).done(success).fail(failure);
 	};
 
+	// update monster
 	var updateMonster = function updateMonster(success, failure, data, id) {
-
 	  $.ajax({
 	    method: "PATCH",
 	    url: app.api + '/monsters/' + id,
@@ -1714,25 +1714,6 @@ webpackJsonp([0],[
 	    }
 	  }).done(success).fail(failure);
 	};
-
-	// const updateMonster = function (success, failure, data, id){
-	//
-	//   event.preventDefault();
-	//
-	//
-	//   console.log(data);
-	//     $.ajax({
-	//     url: 'http://localhost:3000/monsters/' + id,
-	//     method: 'PATCH',
-	//     contentType: false,
-	//     processData: false,
-	//     data,
-	//   }).done(ui.uploadSuccess)
-	//     .fail((err) => console.error(err));
-	//
-	//
-	// };
-
 
 	module.exports = {
 	  signUp: signUp,
@@ -1744,7 +1725,6 @@ webpackJsonp([0],[
 	  getAllPictures: getAllPictures,
 	  deleteMonster: deleteMonster,
 	  updateMonster: updateMonster
-
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -1755,8 +1735,7 @@ webpackJsonp([0],[
 	'use strict';
 
 	var app = {
-	  // api:  'https://thawing-spire-40526.herokuapp.com',
-	  api: 'http://localhost:3000'
+	  api: 'https://fathomless-everglades-52108.herokuapp.com'
 	};
 
 	module.exports = app;
@@ -1782,7 +1761,6 @@ webpackJsonp([0],[
 	// Error modal for taken email
 	var failure = function failure(error) {
 	  console.error(error);
-
 	  $('#sign-up').each(function () {
 	    this.reset();
 	  });
@@ -1791,7 +1769,6 @@ webpackJsonp([0],[
 	// Error modal for wrong password
 	var failureSignIn = function failureSignIn() {
 	  console.log("Wrong Password!");
-
 	  $('#sign-in').each(function () {
 	    this.reset();
 	  });
@@ -1800,8 +1777,6 @@ webpackJsonp([0],[
 	// Sign up
 	var onSuccess = function onSuccess(data) {
 	  app.user = data.user;
-
-	  console.log(data);
 	  console.log("Sign up was successful!");
 
 	  $('#sign-up-job-modal').modal('hide');
@@ -1816,32 +1791,24 @@ webpackJsonp([0],[
 	  });
 	};
 
-	// handlebars
+	// handlebars for all uploads for admin page
 	var displayUploads = function displayUploads(monsters) {
-	  // debugger;
 	  var picturesListingTemplate = __webpack_require__(29);
-
-	  // remove all the content table
 	  $('#all-monsters').empty();
 	  // append content from GET request using handlebars
 	  $('#all-monsters').append(picturesListingTemplate({
-
-	    // debugger;
 	    monsters: monsters
 	  }));
 	};
 
 	var showPicturesSuccess = function showPicturesSuccess(data) {
-
 	  app.monsters = data.monsters;
-
 	  displayUploads(data);
 	  console.log(app.monsters);
 	};
 
 	var uploadSuccess = function uploadSuccess(data) {
 	  console.log(data);
-
 	  api.getAllPictures(showPicturesSuccess, failure);
 	};
 
@@ -1851,52 +1818,41 @@ webpackJsonp([0],[
 	  app.user = data.user;
 	  console.log(app.user._id);
 	  console.log(app.user.token);
-
 	  console.log(app.user.admin);
 
 	  if (app.user.admin === true) {
-	    $('.jumbotron, #monsters').hide();
+	    $('.jumbotron, #monsters, #cart-modal-link, #sign-up-modal-link, #sign-in-modal-link, #orders-modal-link').hide();
 	    $('#admin, #multipart-form-data, .content').show();
-
 	    api.getAllPictures(showPicturesSuccess, failure);
 	  }
-
 	  $('.sign-in-warn').hide();
 	  $('#checkout-button').show();
 	};
 
 	// Sign out
 	var signOutSuccess = function signOutSuccess() {
-
 	  console.log('You signed out succesfully!');
 	  delete app.user;
 	};
 
-	// success monsters, show up!
+	// show all monsters on main page, handlebars
 	var successMonsters = function successMonsters(monsters) {
-	  console.log(monsters);
-
 	  $('#monsters').empty();
-
 	  var displayAllMonsters = __webpack_require__(30);
-
 	  $('#monsters').append(displayAllMonsters(monsters));
 	};
 
-	// one monster
+	// show one monster in modal, handlebars
 	var successMonster = function successMonster(monster) {
-	  console.log(monster);
 	  var oneMonster = __webpack_require__(31);
 	  $('#item').modal('show');
 	  $('#item-add').empty().append(oneMonster(monster));
 	};
 
+	// delete
 	var deleteMonsterSuccess = function deleteMonsterSuccess(data) {
 	  console.log(data);
-	  console.log("Monster is deleted!");
-
 	  displayUploads();
-
 	  // fire ajax if delete was successful and delete if on the front end
 	  api.getAllPictures(showPicturesSuccess, failure);
 	};
@@ -1905,7 +1861,6 @@ webpackJsonp([0],[
 	var updateMonsterSuccess = function updateMonsterSuccess(data) {
 	  console.log(data);
 	  console.log("Monster was updated!");
-
 	  // fire ajax if update was successful and show jobs on the front end
 	  api.getAllPictures(showPicturesSuccess, failure);
 	};
@@ -1924,7 +1879,6 @@ webpackJsonp([0],[
 	  showPicturesSuccess: showPicturesSuccess,
 	  deleteMonsterSuccess: deleteMonsterSuccess,
 	  updateMonsterSuccess: updateMonsterSuccess
-
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -1937,7 +1891,8 @@ webpackJsonp([0],[
 	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
 	    var stack1;
 
-	  return ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.monsters : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+	  return " \n"
+	    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.monsters : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 	},"2":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : {}, alias3=helpers.helperMissing, alias4="function";
 
@@ -1955,11 +1910,11 @@ webpackJsonp([0],[
 	    + alias1(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"_id","hash":{},"data":data}) : helper)))
 	    + "\" data-toggle=\"modal\" data-target=\"#delete-monster-modal\">Delete</button>\n        </div>\n        <br>\n        <button type=\"button\" class=\"btn btn-warning update-monster\" data-monster-id=\""
 	    + alias1(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"_id","hash":{},"data":data}) : helper)))
-	    + "\" data-toggle=\"modal\" data-target=\"#update-monster-modal\">Update</button>\n        </div>\n        <br>\n        <br>\n        <hr>\n\n\n";
+	    + "\" data-toggle=\"modal\" data-target=\"#update-monster-modal\">Update</button>\n        </div>\n        <br>\n        <br>\n        <hr>\n\n";
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var stack1;
 
-	  return "\n\n"
+	  return "\n"
 	    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},depth0,{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 	},"useData":true});
 
@@ -1972,15 +1927,15 @@ webpackJsonp([0],[
 	module.exports = (Handlebars["default"] || Handlebars).template({"1":function(container,depth0,helpers,partials,data) {
 	    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-	  return " <div id=\"monster\" data-id="
+	  return "\n <div id=\"monster\" data-id="
 	    + alias4(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"_id","hash":{},"data":data}) : helper)))
-	    + " class=\"col-md-4 img\" data-toggle=\"modal\" data-target=\"#item\" height=\"260px\">\n\n   <img  class=\"monster-images\" src=\""
+	    + " class=\"col-md-4 img\" data-toggle=\"modal\" data-target=\"#item\" height=\"260px\">\n   <img  class=\"monster-images\" src=\""
 	    + alias4(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"url","hash":{},"data":data}) : helper)))
 	    + "\"  height=\"400\" width=\"100%\" />\n   <h5 class=\"monster-name\">"
 	    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
 	    + "</h5>\n   <h5 class=\"monster-price\">$"
 	    + alias4(((helper = (helper = helpers.price || (depth0 != null ? depth0.price : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"price","hash":{},"data":data}) : helper)))
-	    + "</h5>\n\n </div>\n\n";
+	    + "</h5>\n </div>\n\n";
 	},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var stack1;
 
@@ -1996,7 +1951,7 @@ webpackJsonp([0],[
 	module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
 	    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-	  return "\n\n<div class=\"single-monster\">\n  <img src="
+	  return "<div class=\"single-monster\">\n  <img src="
 	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.monster : depth0)) != null ? stack1.url : stack1), depth0))
 	    + " width=\"200\">\n  <br>\n  <br>\n  <p class=\"price\"><b>PRICE:</b> $"
 	    + alias2(alias1(((stack1 = (depth0 != null ? depth0.monster : depth0)) != null ? stack1.price : stack1), depth0))
@@ -2019,9 +1974,11 @@ webpackJsonp([0],[
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var cartStorage = __webpack_require__(5);
-	//cart functionality that populates cart data.
+	//cart functionality that populates cart data
 
+	var cartStorage = __webpack_require__(5);
+
+	// remove monsters from cart
 	var onRemoveFromCart = function onRemoveFromCart(event) {
 	  event.preventDefault();
 	  var targetName = $(this).parent().parent().attr('id');
@@ -2039,6 +1996,7 @@ webpackJsonp([0],[
 	  }
 	};
 
+	// change quantity of current cart
 	var onChangeQuant = function onChangeQuant(event) {
 	  event.preventDefault();
 	  var id = $(this).parent().parent().attr('id');
@@ -2056,15 +2014,16 @@ webpackJsonp([0],[
 	  $('.quant').off('mouseleave');
 	};
 
+	// change quantity when you take your mouse off of quantity
 	var onSelectQuant = function onSelectQuant(event) {
 	  event.preventDefault();
 	  $(this).on('mouseleave', onChangeQuant);
 	};
 
+	// cart related event handlers
 	var addCartHandlers = function addCartHandlers() {
 	  $(document).on('click', '.x', onRemoveFromCart);
 	  $(document).on('click', '.quant', onSelectQuant);
-	  //  $(document).on('mouseleave', '.quant', onChangeQuant);
 	};
 
 	module.exports = {
@@ -2106,14 +2065,9 @@ webpackJsonp([0],[
 	  }
 	  var data = currentOrder;
 	  api.createOrder(data).then(ui.createOrderSuccess).catch(ui.failure);
-
-	  // console.log(app.order);
-	  // opens stripe checkout
 	  handler.open({
 	    name: 'Monster for hire',
 	    closed: function closed() {
-	      // console.log('done!!');
-	      // console.log(app.order);
 	      api.changePaidStatus().then(ui.changePaidStatusSuccess).catch(ui.failure);
 	    },
 	    amount: currentOrder.order.total * 100
@@ -2121,7 +2075,6 @@ webpackJsonp([0],[
 	};
 
 	var addHandlers = function addHandlers() {
-	  // $('#save-order-button').on('click', onSaveOrder);
 	  $('#checkout-button').on('click', onCheckout);
 	  $(window).on('popstate', function () {
 	    handler.close();
@@ -2142,7 +2095,6 @@ webpackJsonp([0],[
 	var app = __webpack_require__(27);
 
 	var createOrder = function createOrder(data) {
-	  // console.log(data);
 	  return new Promise(function (resolve, reject) {
 	    return $.ajax({
 	      url: app.api + '/orders',
@@ -2163,7 +2115,6 @@ webpackJsonp([0],[
 	};
 
 	var addStripeCharge = function addStripeCharge(data) {
-	  // console.log(data);
 	  return new Promise(function (resolve, reject) {
 	    return $.ajax({
 	      url: app.api + '/charge',
@@ -2221,24 +2172,19 @@ webpackJsonp([0],[
 	var app = __webpack_require__(27);
 
 	var success = function success(data) {
-	  if (data) {
-	    // console.log(data);
-	  } else {
-	      // console.log('Success');
-	    }
+	  if (data) {} else {}
 	};
 
 	var failure = function failure(error) {
-	  // console.error(error);
+	  console.log(error);
 	};
 
 	var createOrderSuccess = function createOrderSuccess(response) {
 	  app.order = response.order;
-	  // console.log(app.order);
 	};
 
 	var changePaidStatusSuccess = function changePaidStatusSuccess(response) {
-	  // console.log(response);
+	  console.log(response);
 	};
 
 	module.exports = {
@@ -2254,27 +2200,11 @@ webpackJsonp([0],[
 
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
-	var api = __webpack_require__(26);
 	var orderApi = __webpack_require__(37);
 	var orderUi = __webpack_require__(38);
-	var ui = __webpack_require__(28);
 
 	var onCart = function onCart(event) {
 	  event.preventDefault();
-	  // console.log('Cart Button clicked');
-	};
-
-	var onCheckout = function onCheckout(event) {
-	  event.preventDefault();
-	  // console.log('Checkout Button clicked')
-	  $('#products').hide();
-	  $('#checkout-page').show();
-	};
-
-	var onBrowse = function onBrowse(event) {
-	  event.preventDefault();
-	  $('#checkout-page').hide();
-	  $('#products').show();
 	};
 
 	var onPreviousOrders = function onPreviousOrders(event) {
@@ -2282,26 +2212,15 @@ webpackJsonp([0],[
 	  orderApi.getPreviousOrders().done(orderUi.getOrderSuccess).fail(orderUi.failure);
 	};
 
-	var onDeleteOrder = function onDeleteOrder(event) {
-	  event.preventDefault();
-	  var orderIDtoDelete = $(event.target).data("order-id");
-	  // console.log(orderIDtoDelete);
-	  api.deleteOrder(orderIDtoDelete).done(ui.successDeleteOrder).fail(ui.failure);
-	};
-
 	var addHandlers = function addHandlers() {
 	  $('#cart-button').on('click', onCart);
-	  $('#check-out-button').on('click', onCheckout);
-	  $('#logo').on('click', onBrowse);
 	  $('#orders-modal-link').on('click', onPreviousOrders);
 	  $('#checkout-page').hide();
-	  $(document).on('click', '.deleteButtons', onDeleteOrder);
 	};
 
 	module.exports = {
 	  addHandlers: addHandlers,
-	  onCart: onCart,
-	  onCheckout: onCheckout
+	  onCart: onCart
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -2313,6 +2232,7 @@ webpackJsonp([0],[
 
 	var app = __webpack_require__(27);
 
+	// get previous orders
 	var getPreviousOrders = function getPreviousOrders() {
 	  return $.ajax({
 	    url: app.api + '/owner_orders/' + app.user._id,
@@ -2323,6 +2243,7 @@ webpackJsonp([0],[
 	  });
 	};
 
+	// delete order
 	var deleteOrder = function deleteOrder(orderIDtoDelete) {
 	  return $.ajax({
 	    url: app.api + '/orders/' + orderIDtoDelete,
@@ -2365,6 +2286,7 @@ webpackJsonp([0],[
 	//     }));
 	//   };
 
+
 	var getOrderSuccess = function getOrderSuccess(data) {
 
 	  app.orders = data.orders;
@@ -2399,7 +2321,6 @@ webpackJsonp([0],[
 	      }
 	    }
 	  }
-
 	  $('#previous-orders').html(previousOrders);
 	  $('#prev-orders').hide();
 	};
