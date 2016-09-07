@@ -1,8 +1,11 @@
 'use strict';
 
-const cartStorage = require('./cart_storage.js');
-//cart functionality that populates cart data.
 
+//cart functionality that populates cart data
+const cartStorage = require('./cart_storage.js');
+
+
+// remove monsters from cart
 const onRemoveFromCart = function (event) {
   event.preventDefault();
   let targetName = $(this).parent().parent().attr('id');
@@ -20,6 +23,8 @@ const onRemoveFromCart = function (event) {
   }
 };
 
+
+// change quantity of current cart
 const onChangeQuant = function (event) {
   event.preventDefault();
   let id = $(this).parent().parent().attr('id');
@@ -36,15 +41,18 @@ const onChangeQuant = function (event) {
   $('.quant').off('mouseleave');
 };
 
+
+// change quantity when you take your mouse off of quantity
 const onSelectQuant = function (event) {
   event.preventDefault();
   $(this).on('mouseleave', onChangeQuant);
 };
 
+
+// cart related event handlers
 const addCartHandlers = () => {
   $(document).on('click','.x', onRemoveFromCart);
   $(document).on('click', '.quant', onSelectQuant);
-//  $(document).on('mouseleave', '.quant', onChangeQuant);
 };
 
 
