@@ -6,8 +6,11 @@ let cartObj = {
   total: 0
 };
 
+
+// are there monsters in cart
 let inCartStatus = "";
 const arr = cartObj.items;
+
 
 const inCart = function (val) {
   if (this[1] === val.name) {
@@ -16,10 +19,14 @@ const inCart = function (val) {
   }
 };
 
+
+// total price
 const calculateTotal = function (val) {
   this.push(val.price * val.quantity);
 };
 
+
+// update total number of monsters
 const updateTotal = function () {
   let itemTotal = [];
   arr.forEach(calculateTotal,itemTotal);
@@ -27,17 +34,20 @@ const updateTotal = function () {
   $('.show-cart').children('h5').text("Total: $" + cartObj.total);
 };
 
+
+// populate modal cart
 const populateCart = function (data) {
   let cartTemplate = require ('../templates/cart.handlebars');
   $('.cart-items').html(cartTemplate(data));
 };
 
+
+// add items in cart
 const addItems = function () {
   let cartItem = [];
   inCartStatus = "";
   //form is the form id for monsters that populates within handlebars.
   let form = document.getElementById("form");
-  // let form =  $('#form');
   for (let i = 1; i < 5; i++) {
        let field = form[i];
        cartItem.push(field.value);
@@ -54,6 +64,7 @@ const addItems = function () {
   updateTotal();
   return populateCart(cartObj);
 };
+
 
 module.exports = {
   addItems,

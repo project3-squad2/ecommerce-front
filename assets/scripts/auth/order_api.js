@@ -3,7 +3,7 @@
 const app = require('../app.js');
 
 
-
+// get previous orders
 const getPreviousOrders = () => {
   return $.ajax({
     url: app.api + '/owner_orders/' + app.user._id,
@@ -14,9 +14,10 @@ const getPreviousOrders = () => {
   });
 };
 
+
+// delete order
 const deleteOrder = function (orderIDtoDelete) {
-  return $.ajax(
-  {
+  return $.ajax({
     url: app.api + '/orders/' + orderIDtoDelete,
     method: 'DELETE',
     headers: {
@@ -25,6 +26,7 @@ const deleteOrder = function (orderIDtoDelete) {
   }
   );
 };
+
 
 module.exports = {
   getPreviousOrders,

@@ -7,17 +7,19 @@ const cartStorage = require('./cart_storage');
 const api = require('./api');
 const ui = require('./ui');
 
+
 //AUTH EVENTS
 // Sign up
 const onSignUp = function (event) {
   event.preventDefault();
   let data = getFormFields(this);
-  // console.log(data);
    api.signUp(data)
    .done(ui.onSuccess)
    .fail(ui.failure);
 };
 
+
+// sign up modal show and hide
 const showSignUpModal = function showSignUpModal(){
   $('#sign-up-modal').modal('show');
 };
@@ -27,7 +29,7 @@ const closeModalSignUp = function closeModalSignUp() {
 };
 
 
-// Sign in
+// sign in modal show and hide
 const showSignInModal = function showSignInModal(){
   $('#sign-in-modal').modal('show');
 };
@@ -37,8 +39,8 @@ const closeModalSignIn = function closeModalSignIn() {
 };
 
 
+// sign in
 const onSignIn = function (event) {
-
   let data = getFormFields(this);
   console.log(data);
   event.preventDefault();
@@ -47,7 +49,8 @@ const onSignIn = function (event) {
    .fail(ui.failureSignIn);
 };
 
-// Change passowrd
+
+// Change passowrd modal show and hide
 const showChangePasswordModal = function showChangePasswordModal(){
   $('#change-password-modal').modal('show');
 };
@@ -56,6 +59,8 @@ const closeModalChangePassword = function closeModalChangePassword() {
     $('#change-password-modal').modal('hide');
 };
 
+
+// change password
 const onChangePassword = function(event) {
   event.preventDefault();
   let data = getFormFields(this);
@@ -65,7 +70,9 @@ const onChangePassword = function(event) {
     .fail(ui.failure);
 };
 
-// Sign out
+
+
+// Sign out modal show and hide
 const showSignOutModal = function showSignOutModal(){
   $('#sign-out-modal').modal('show');
 };
@@ -75,6 +82,7 @@ const closeModalSignOut = function closeModalSignOut() {
 };
 
 
+// sign out
 const onSignOut = function (event) {
     event.preventDefault();
     api.signOut()
@@ -87,33 +95,30 @@ const onSignOut = function (event) {
 
 // load all monsters
 const onPageLoad = function () {
-  //  debugger;
   api.getAllMonsters()
      .done(ui.successMonsters)
      .fail(ui.failure);
 };
 
+
 //show a single monster
 const onShowMonster = function (id) {
-  console.log(id);
-    // event.preventDefault();
     api.showMonster(id)
-    // ui.successMonster();
    .done(ui.successMonster)
    .fail(ui.failure);
-
 };
 
+
+// close cart modal
 const closeModalCart = function closeModalCart() {
     $('#item').modal('hide');
-
 };
 
 
+// add monsters to cart
 const onAddToCart = function (event) {
   event.preventDefault();
   let form = document.getElementById("form");
-  console.log(form);
   let targ = form[1];
     console.log(targ);
   let val = targ.value;
@@ -130,40 +135,29 @@ const onAddToCart = function (event) {
 };
 
 
-
+// show cart modal
 const showCartModal = function showCartModal(){
   $('#cart').modal('show');
 };
 
 
-
-// orders
+// orders modal show
 const showOrdersModal = function showOrdersModal(){
   $('#orders-modal').modal('show');
 };
 
 
-
-// const closeModalSignOut = function closeModalSignOut() {
-//     $('#sign-out-modal').modal('hide');
-// };
-
 const uploadMonster = function (){
-
   event.preventDefault();
-
   let data = new FormData(this);
-  console.log(data);
     $.ajax({
-    url: 'http://localhost:3000/monsters',
+    url: 'https://fathomless-everglades-52108.herokuapp.com/monsters',
     method: 'POST',
     contentType: false,
     processData: false,
     data,
   }).done(ui.uploadSuccess)
     .fail((err) => console.error(err));
-
-
 };
 
 
@@ -171,98 +165,98 @@ const uploadMonster = function (){
 
 const addHandlers = () => {
 
-    $('#sign-up-modal-link').on('click', showSignUpModal);
-    $('#sign-up').on('submit', onSignUp);
-    $('#sign-up1').on('click', closeModalSignUp);
-
-    $('#sign-in-modal-link').on('click', showSignInModal);
-    $('#sign-in').on('submit', onSignIn);
-    $('#sign-in1').on('click', closeModalSignIn);
-
-    $('#change-password-modal-link').on('click', showChangePasswordModal);
-    $('#change-password').on('submit', onChangePassword);
-    $('#change-password1').on('click', closeModalChangePassword);
-
-    $('#sign-out-modal-link').on('click', showSignOutModal);
-    $('#sign-out').on('submit', onSignOut);
-    $('#sign-out1').on('click', closeModalSignOut);
-
-    $("#sign-out1").on('click', function () {
-          $('#table, #create-job-modal-link').hide();
-
-            location.reload();
-
-    });
-
-//displays all products upon page load
-    $(document).ready(onPageLoad);
-
-//show a single monster when the monster is clicked
-    $(document).on('click', '.col-md-4', function(){
-      let id = $(this).data('id');
-      console.log(id);
-      onShowMonster(id);
-    });
-
-  // cart
-    $('.add-to-cart').on('click', onAddToCart);
-    $('#cart-modal-link').on('click', function() {
-      showCartModal();
-    });
+  $('#sign-up-modal-link').on('click', showSignUpModal);
+  $('#sign-up').on('submit', onSignUp);
+  $('#sign-up1').on('click', closeModalSignUp);
 
 
-// orders
-$('#orders-modal-link').on('click', showOrdersModal);
-
-$('#sign-out').on('submit', onSignOut);
-$('#sign-out1').on('click', closeModalSignOut);
-
-$('#multipart-form-data').on('submit', uploadMonster);
+  $('#sign-in-modal-link').on('click', showSignInModal);
+  $('#sign-in').on('submit', onSignIn);
+  $('#sign-in1').on('click', closeModalSignIn);
 
 
+  $('#change-password-modal-link').on('click', showChangePasswordModal);
+  $('#change-password').on('submit', onChangePassword);
+  $('#change-password1').on('click', closeModalChangePassword);
 
 
+  $('#sign-out-modal-link').on('click', showSignOutModal);
+  $('#sign-out').on('submit', onSignOut);
+  $('#sign-out1').on('click', closeModalSignOut);
 
-// $('.btn btn-warning delete-monster').on('click', onDeleteMonster);
-$('.delete-monster-btn').on('click', function (event) {
-     event.preventDefault();
-     let id = $(this).attr("data-monster-id");
 
-    //  debugger;
-     api.deleteMonster(ui.deleteMonsterSuccess, ui.failure, id);
-   });
+  $("#sign-out1").on('click', function () {
+  $('#table, #create-job-modal-link').hide();
+          location.reload();
+});
 
-  //adds a monster id to the submit button
-  $('#admin').on('click', '.delete-monster', function(event){
-  event.preventDefault();
-  let id = $(event.target).attr("data-monster-id");
-  $(".delete-monster-btn").attr("data-monster-id", id);
+
+  //displays all products upon page load
+  $(document).ready(onPageLoad);
+
+
+  //show a single monster when the monster is clicked
+  $(document).on('click', '.col-md-4', function(){
+    let id = $(this).data('id');
+    console.log(id);
+    onShowMonster(id);
   });
 
 
+  // cart
+  $('.add-to-cart').on('click', onAddToCart);
+  $('#cart-modal-link').on('click', function() {
+    showCartModal();
+  });
 
 
+  // orders
+  $('#orders-modal-link').on('click', showOrdersModal);
+
+  $('#sign-out').on('submit', onSignOut);
+  $('#sign-out1').on('click', closeModalSignOut);
+
+  // aws ajax
+  $('#multipart-form-data').on('submit', uploadMonster);
 
 
+  // delete monster (data-id)
+  $('.delete-monster-btn').on('click', function (event) {
+     event.preventDefault();
+     let id = $(this).attr("data-monster-id");
+     api.deleteMonster(ui.deleteMonsterSuccess, ui.failure, id);
+   });
+
+
+  //adds a monster id to the submit button
+  $('#admin').on('click', '.delete-monster', function(event){
+    event.preventDefault();
+    let id = $(event.target).attr("data-monster-id");
+    $(".delete-monster-btn").attr("data-monster-id", id);
+  });
+
+
+  // update monster (data-id)
   $('#update-monster').on('submit', function (event) {
-        event.preventDefault();
-        let id = $(".update-monster-btn").attr("data-monster-id");
-        let data = getFormFields(this);
-        // debugger;
-        api.updateMonster(ui.updateMonsterSuccess, ui.failure, data, id);
-      });
+    event.preventDefault();
+    let id = $(".update-monster-btn").attr("data-monster-id");
+    let data = getFormFields(this);
+    api.updateMonster(ui.updateMonsterSuccess, ui.failure, data, id);
+  });
 
-      //adds a job id to the submit button
-      $('#admin').on('click', '.update-monster', function(event){
-        event.preventDefault();
-        let id = $(event.target).attr("data-monster-id");
-        $(".update-monster-btn").attr("data-monster-id", id);
-    });
+  //adds a job id to the submit button
+  $('#admin').on('click', '.update-monster', function(event){
+    event.preventDefault();
+    let id = $(event.target).attr("data-monster-id");
+    $(".update-monster-btn").attr("data-monster-id", id);
+  });
 
-       $(".update-monster-btn").on('click', function () {
-            $("#update-monster-modal").hide();
-              $(".modal-backdrop").hide();
-       });
+
+   //adds a monster id to the click button
+   $(".update-monster-btn").on('click', function () {
+   $("#update-monster-modal").hide();
+   $(".modal-backdrop").hide();
+   });
 
 };
 
