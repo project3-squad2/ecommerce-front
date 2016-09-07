@@ -43,7 +43,7 @@ const addHandlers = () => {
   $('#cart-button').on('click', onCart);
   $('#check-out-button').on('click', onCheckout);
   $('#logo').on('click', onBrowse);
-  $('#previous-orders').on('submit', onPreviousOrders);
+  $('#prev-orders').on('submit', onPreviousOrders);
   $('#checkout-page').hide();
   $(document).on('click','.deleteButtons', onDeleteOrder);
 };
