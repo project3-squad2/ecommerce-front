@@ -2,8 +2,8 @@
 
 const app = require('../app');
 
+
 const createOrder = (data) => {
-  // console.log(data);
   return new Promise((resolve, reject) => {
     return $.ajax({
       url: app.api + '/orders',
@@ -23,8 +23,9 @@ const createOrder = (data) => {
   });
 };
 
+
+
 const addStripeCharge = (data) => {
-  // console.log(data);
   return new Promise((resolve, reject) => {
     return $.ajax({
       url: app.api + '/charge',
@@ -42,6 +43,7 @@ const addStripeCharge = (data) => {
     });
   });
 };
+
 
 const changePaidStatus = () => {
   return new Promise((resolve, reject) => {
@@ -65,6 +67,7 @@ const changePaidStatus = () => {
     });
   });
 };
+
 
 module.exports = {
   createOrder,
