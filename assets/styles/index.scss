@@ -121,6 +121,18 @@ input, button, select, textarea {
 //   color: white;
 //   font-weight: bold;
 // }
+table {
+ width: 100%;
+ border-collapse: collapse;
+ text-align: center;
+}
+
+td, th {
+
+ padding: 6px;
+ border: 1px solid #ccc;
+ text-align: center;
+}
 
 img {
     vertical-align: middle;
