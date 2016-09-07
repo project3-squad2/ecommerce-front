@@ -1,9 +1,8 @@
 'use strict';
 
 const app = require('../app');
-// const api = require('../api');
-// const ui = require('./ui');
 
+// sign in
 const signIn = (data) => $.ajax({
   url: app.api + '/sign-in',
   method: 'POST',
@@ -11,7 +10,7 @@ const signIn = (data) => $.ajax({
 });
 
 
-
+// change password
 const changePassword = (data) => $.ajax({
   url: app.api + '/change-password/' + app.user._id,
   method: 'PATCH',
@@ -22,6 +21,7 @@ const changePassword = (data) => $.ajax({
 });
 
 
+// sign up
 const signUp = (data) => $.ajax({
     url: app.api + '/sign-up',
     method: 'POST',
@@ -29,7 +29,7 @@ const signUp = (data) => $.ajax({
    });
 
 
-
+// sign out
 const signOut = () => $.ajax({
   url: app.api + '/sign-out/' + app.user._id,
   method: 'DELETE',
@@ -39,18 +39,21 @@ const signOut = () => $.ajax({
 });
 
 
-
+// show all monsters on main page
 const getAllMonsters = () => $.ajax({
   url: app.api + '/monsters/',
   method: 'GET',
-
 });
 
+
+// show single monster in modal
 const showMonster = (id) => $.ajax({
   url: app.api + '/monsters/' + id,
     method: 'GET',
 });
 
+
+// get all monsters for Admin panel
 const getAllPictures = (success, failure) => {
   return $.ajax({
     url: app.api + '/monsters',
@@ -64,54 +67,33 @@ const getAllPictures = (success, failure) => {
 };
 
 
-
-
+// delete monster
 const deleteMonster = (success, failure, id) => {
-    $.ajax({
-      url: app.api + '/monsters/' + id,
-      method: 'DELETE',
-      headers: {
-        Authorization: 'Token token=' + app.user.token,
-      },
-    })
-    .done(success)
-    .fail(failure);
-  };
+  $.ajax({
+    url: app.api + '/monsters/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + app.user.token,
+    },
+  })
+  .done(success)
+  .fail(failure);
+};
 
 
-
-  const updateMonster = (success, failure, data, id) => {
-
-    $.ajax({
-      method: "PATCH",
-      url: app.api + '/monsters/' + id,
-      data,
-      headers: {
-        Authorization: 'Token token='+ app.user.token,
-      },
-    })
-    .done(success)
-    .fail(failure);
-  };
-
-  // const updateMonster = function (success, failure, data, id){
-  //
-  //   event.preventDefault();
-  //
-  //
-  //   console.log(data);
-  //     $.ajax({
-  //     url: 'http://localhost:3000/monsters/' + id,
-  //     method: 'PATCH',
-  //     contentType: false,
-  //     processData: false,
-  //     data,
-  //   }).done(ui.uploadSuccess)
-  //     .fail((err) => console.error(err));
-  //
-  //
-  // };
-
+// update monster
+const updateMonster = (success, failure, data, id) => {
+  $.ajax({
+    method: "PATCH",
+    url: app.api + '/monsters/' + id,
+    data,
+    headers: {
+      Authorization: 'Token token='+ app.user.token,
+    },
+  })
+  .done(success)
+  .fail(failure);
+};
 
 module.exports = {
   signUp,
@@ -123,6 +105,4 @@ module.exports = {
   getAllPictures,
   deleteMonster,
   updateMonster
-
-
 };
