@@ -151,7 +151,7 @@ const uploadMonster = function (){
   event.preventDefault();
   let data = new FormData(this);
     $.ajax({
-    url: 'http://localhost:3000/monsters',
+    url: 'https://fathomless-everglades-52108.herokuapp.com/monsters',
     method: 'POST',
     contentType: false,
     processData: false,
