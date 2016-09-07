@@ -121,7 +121,7 @@ input, button, select, textarea {
 //   color: white;
 //   font-weight: bold;
 // }
-table {
+.order-table {
  width: 100%;
  border-collapse: collapse;
  text-align: center;
@@ -132,6 +132,11 @@ td, th {
  padding: 6px;
  border: 1px solid #ccc;
  text-align: center;
+}
+
+#previous-orders {
+  max-height: 200px;
+  overflow: auto;
 }
 
 img {
