@@ -19,7 +19,7 @@ let handler = StripeCheckout.configure({
       stripeToken: token.id,
       amount: currentOrder.order.total * 100
     };
-    api.addStripeCharge(credentials).then(ui.success).catch(ui.failure);
+    // api.addStripeCharge(credentials).then(ui.success).catch(ui.failure);
   }
 });
 
