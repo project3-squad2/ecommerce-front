@@ -181,14 +181,8 @@ const addHandlers = () => {
 
 
   $('#sign-out-modal-link').on('click', showSignOutModal);
-  $('#sign-out').on('submit', onSignOut);
-  $('#sign-out1').on('click', closeModalSignOut);
 
-
-  $("#sign-out1").on('click', function () {
-  $('#table, #create-job-modal-link').hide();
-          location.reload();
-});
+  $('#sign-out1').on('submit', onSignOut);
 
 
   //displays all products upon page load
